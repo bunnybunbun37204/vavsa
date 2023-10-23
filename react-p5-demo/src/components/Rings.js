@@ -87,7 +87,7 @@ class RingSketch extends React.Component {
               let col_i2 = (col_i1 + 1) % this.numCol;
               let colAmp = (colNoiseVal - col_i1 / this.numCol) * this.numCol * amplitudeVal;
               let col = p.lerpColor(this.aryCol[col_i1], this.aryCol[col_i2], colAmp);
-      
+              
               p.push();
               p.stroke(col);
               p.rotateX(p.PI / 2);
