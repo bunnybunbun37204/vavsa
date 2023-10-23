@@ -4,7 +4,7 @@ import { Link, Routes, useNavigate } from 'react-router-dom';
 
 function AudioList() {
   const [audioData, setAudioData] = useState([]);
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch data from the /audio API endpoint
@@ -20,18 +20,20 @@ function AudioList() {
 
   const handleAudioClick = (filename) => {
     // Navigate to the audio detail page using React Router
-    navigate(`/audio/${filename}`); // Use navigate
+    navigate(`/audio/${filename}`);
   };
 
   return (
-    <div>
-      <h1>Audio Files</h1>
+    <div className="audio-list-container">
+      <h1 className="audio-list-header">Spooky Audio Files</h1>
       <ul>
         {audioData.map((audio, index) => (
-          <li key={index}>
-            <a onClick={() => handleAudioClick(audio._id)} style={{ cursor: 'pointer' }}>
-              {audio.filename}
-            </a>
+          <li
+            key={index}
+            onClick={() => handleAudioClick(audio._id)}
+            className="audio-item"
+          >
+            {audio.filename}
           </li>
         ))}
       </ul>

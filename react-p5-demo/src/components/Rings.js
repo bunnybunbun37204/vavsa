@@ -19,7 +19,7 @@ class RingSketch extends React.Component {
         let amplitude;
         let _minW;
         let _maxW;
-        let _palette0 = ["FF0000", "FF6A00", "FFD800", "00FF00", "00FFFF", "0000FF", "FF00FF"];
+        let _palette0 = ['FF7F50', 'FF6347', '8B4513', '2E8B57', '8B0000', '800080', 'FF1493'];
         let _count;
         let _aryRing = [];
         let _aryRotate = [];
@@ -103,17 +103,18 @@ class RingSketch extends React.Component {
       
       
 
-        const setObject = (p) => {
+          const setObject = (p) => {
+            // Initialize variables and parameters
             _count = 0;
             _minW = p.min(p.width, p.height) * 1;
             _maxW = p.max(p.width, p.height);
             p.rectMode(p.CENTER);
             p.ellipseMode(p.RADIUS);
-            //noFill();
             p.stroke(0, 0, 255);
-            p.strokeWeight(_minW / 600 * p.pixelDensity());
-      
-            let numRing = 600;
+            p.strokeWeight((_minW / 600) * p.pixelDensity());
+          
+            // Define the number of rings and initial parameters
+            let numRing = 300;
             let posR = _minW / 2.9;
             let posAngNoiseInit_0 = [p.random(10000), p.random(10000), p.random(10000)];
             let rNoiseInit_0 = [p.random(10000), p.random(10000), p.random(10000)];
@@ -127,27 +128,37 @@ class RingSketch extends React.Component {
             let posAngNoiseSpeed = 0.004 * p.random([-1, 1]);
             let rNoiseSpeed = 0.004 * p.random([-1, 1]);
             let posRNoiseSpeed = 0.004 * p.random([-1, 1]);
+          
+            // Shuffle the Halloween color palette
             p.shuffle(_palette0, true);
+          
+            // Create an array to hold Ring objects
             _aryRing = [];
             for (let i = 0; i < numRing; i++) {
-              let posAngInit = 2 * p.PI / numRing * i;
+              let posAngInit = (2 * p.PI / numRing) * i;
               let posAngNoiseInit = [posAngNoiseInit_0[0] + posAngNoiseStep * p.cos(posAngInit), posAngNoiseInit_0[1] + posAngNoiseStep * p.sin(posAngInit), posAngNoiseInit_0[2]];
               let rNoiseInit = [rNoiseInit_0[0] + rNoiseStep * p.cos(posAngInit), rNoiseInit_0[1] + rNoiseStep * p.sin(posAngInit), rNoiseInit_0[2]];
               let posRNoiseInit = [posRNoiseInit_0[0] + posRNoiseStep * p.cos(posAngInit), posRNoiseInit_0[1] + posRNoiseStep * p.sin(posAngInit), posRNoiseInit_0[2]];
-      
+          
+              // Create a Ring object with initial parameters and Halloween color palette
               _aryRing[i] = new Ring(posR, posAngInit, posAngNoiseInit, posAngNoiseThetaInit, posAngNoiseSpeed, rNoiseInit, rNoiseThetaInit, rNoiseSpeed, posRNoiseInit, posRNoiseThetaInit, posRNoiseSpeed, _palette0);
             }
-      
-            _aryRotate = [[p.random(2 * p.PI), p.random(0.01)], [p.random(2 * p.PI), p.random(0.01)], [p.random(2 * p.PI), p.random(0.01)]];
           
-        }
+            // Create an array to store rotation information for animation
+            _aryRotate = [
+              [p.random(2 * p.PI), p.random(0.01)],
+              [p.random(2 * p.PI), p.random(0.01)],
+              [p.random(2 * p.PI), p.random(0.01)],
+            ];
+          };
+          
 
 
 
         // Loads the music file into p5.js to play on click
         p.preload = () => {
-            // song = p.loadSound(`http://localhost:4000/audio/${this.songId}`)
-            song = p.loadSound(benSong);
+            song = p.loadSound(`http://localhost:4000/audio/${this.songId}`)
+            //song = p.loadSound(benSong);
             //console.log("Hello");
         }
 
@@ -166,8 +177,8 @@ class RingSketch extends React.Component {
             spectrum = fft.analyze(); // Calculate the spectrum data
 
             p.ortho(-p.width / 2, p.width / 2, -p.height / 2, p.height / 2, -_maxW * 2, _maxW * 4);
-            p.background(90 / 100 * 255);
-      
+            //p.background(90 / 100 * 255);
+            p.background(0);
             p.rotateX(_aryRotate[0][0] + _aryRotate[0][1] * p.frameCount);
             p.rotateY(_aryRotate[1][0] + _aryRotate[1][1] * p.frameCount);
             p.rotateZ(_aryRotate[2][0] + _aryRotate[2][1] * p.frameCount);
@@ -198,7 +209,7 @@ class RingSketch extends React.Component {
 
     render() {
         return (
-          <h1>Hello</h1>
+          <div></div>
         )
     }
 }

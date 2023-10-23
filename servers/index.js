@@ -11,7 +11,7 @@ const corsOptions = {
 
 
 // Set up MongoDB connection
-mongoose.connect('', {
+mongoose.connect('mongodb+srv://bunyawat:Asd_0949823192@cluster0.nqv9e.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

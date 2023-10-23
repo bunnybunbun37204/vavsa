@@ -1,3 +1,5 @@
+/* src/App.css */
+
 .App {
   text-align: center;
 }
@@ -26,6 +28,57 @@
 
 .App-link {
   color: #61dafb;
+}
+
+/* Halloween theme */
+.halloween-container {
+  background-color: #111; /* Dark background color */
+  color: #ff6600; /* Orange text color */
+  text-align: center;
+  font-family: 'Bangers', sans-serif; /* Spooky font */
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.halloween-header {
+  font-size: 3rem;
+  text-shadow: 2px 2px 3px black; /* Add a shadow to text */
+}
+
+/* AudioList.css */
+.audio-list-container {
+  background-color: #111; /* Dark background color */
+  color: #ff6600; /* Orange text color */
+  font-family: 'Nosifer', sans-serif; /* Spooky font */
+}
+
+.audio-list-header {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.audio-item {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ff6600;
+}
+
+.audio-item:hover {
+  background-color: #333; /* Darken the background on hover */
+}
+
+.navbar {
+  background-color: #000; /* Black background color */
+  color: #ff80ab; /* Pink text color */
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive; /* Playful font */
+  padding: 10px;
 }
 
 @keyframes App-logo-spin {

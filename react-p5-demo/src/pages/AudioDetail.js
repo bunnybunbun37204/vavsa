@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import P5Sketch from '../components/Balls';
 import BallSketch from '../components/Balls';
 import RingSketch from '../components/Rings';
 
