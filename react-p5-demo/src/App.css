@@ -81,6 +81,33 @@
   padding: 10px;
 }
 
+.halloween-input-melody {
+  background-color: #111; /* Dark background color */
+  color: #ff6600; /* Orange text color */
+  text-align: center;
+  font-family: 'Bangers', sans-serif; /* Spooky font */
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Halloween-themed button */
+.halloween-button {
+  background-color: #ff6600; /* Orange background color */
+  color: #111; /* Dark text color */
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 5px #000; /* Add shadow to the button */
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
