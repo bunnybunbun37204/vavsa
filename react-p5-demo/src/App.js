@@ -17,7 +17,7 @@ function App() {
       element: <InputMelody />,
     },
     {
-      path: 'audio/:songId',
+      path: 'audioname/:songId',
       element: <AudioDetailView />,
     },
   ]);

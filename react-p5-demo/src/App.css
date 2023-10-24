@@ -107,6 +107,22 @@
   box-shadow: 2px 2px 5px #000; /* Add shadow to the button */
 }
 
+.halloween-input {
+  background-color: #ff6600; /* Orange background color */
+  color: #000; /* Black text color */
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  width: 100%;
+  outline: none;
+}
+
+.halloween-input::placeholder {
+  color: #333; /* Dark gray placeholder text */
+}
+
 
 @keyframes App-logo-spin {
   from {

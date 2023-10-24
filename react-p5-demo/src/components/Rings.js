@@ -157,7 +157,7 @@ class RingSketch extends React.Component {
 
         // Loads the music file into p5.js to play on click
         p.preload = () => {
-            song = p.loadSound(`http://localhost:4000/audio/${this.songId}`)
+            song = p.loadSound(`http://localhost:4000/audioname/${this.songId}`)
             //song = p.loadSound(benSong);
             //console.log("Hello");
         }

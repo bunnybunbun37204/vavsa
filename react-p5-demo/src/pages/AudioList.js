@@ -20,7 +20,7 @@ function AudioList() {
 
   const handleAudioClick = (filename) => {
     // Navigate to the audio detail page using React Router
-    navigate(`/audio/${filename}`);
+    navigate(`/audioname/${filename}`);
   };
 
   return (
@@ -30,7 +30,7 @@ function AudioList() {
         {audioData.map((audio, index) => (
           <li
             key={index}
-            onClick={() => handleAudioClick(audio._id)}
+            onClick={() => handleAudioClick(audio.filename)}
             className="audio-item"
           >
             {audio.filename}

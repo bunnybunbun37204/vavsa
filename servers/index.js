@@ -6,7 +6,7 @@ const app = express();
 const port = 4000;
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://localhost:5000'],
   };
 
 
@@ -28,7 +28,6 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 app.use(cors(corsOptions));
-
 
 // Serve uploaded audio files
 app.use('/uploads', express.static('uploads'));
@@ -73,6 +72,27 @@ app.get('/audio/:audioId', async (req, res) => {
       res.status(500).send('Error retrieving and serving audio data');
     }
   });
+
+  app.get('/audioname/:filename', async (req, res) => {
+    try {
+      const requestedFilename = req.params.filename;
+  
+      // Find the audio data in the database by filename
+      const audio = await Audio.findOne({ filename: requestedFilename });
+  
+      if (!audio) {
+        return res.status(404).send('Audio not found');
+      }
+      // Set the response headers and send the audio data
+      res.setHeader('Content-Type', 'audio/wav'); // Adjust the content type as needed
+      res.setHeader('Content-Disposition', `attachment; filename="${audio.filename}"`);
+      res.end(audio.data, 'binary');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error retrieving and serving audio data');
+    }
+  });
+  
 
   app.get('/audio', async (req, res) => {
     try {
