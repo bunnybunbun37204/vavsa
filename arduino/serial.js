@@ -10,14 +10,16 @@ const player = require('play-sound')();
 
 // Define the key mappings and corresponding sound files (adjust paths as needed)
 const keyMappings = {
-  'C4': 'sound/piano-c_C_major.wav',
-  'D4': 'sound/piano-d_D_major.wav',
-  'E4': 'sound/piano-e_E_major.wav',
-  'F4': 'sound/piano-f_F_major.wav',
-  'G4': 'sound/piano-c_C_major.wav',
-  'A4': 'sound/piano-d_D_major.wav',
-  'B4': 'sound/piano-e_E_major.wav',
-  'C5': 'sound/piano-f_F_major.wav',
+  'C4': 'servers/sounds/piano-88-notes/4-c.wav',
+  'D4': 'servers/sounds/piano-88-notes/4-d.wav',
+  'E4': 'servers/sounds/piano-88-notes/4-e.wav',
+  'F4': 'servers/sounds/piano-88-notes/4-f.wav',
+  'G4': 'servers/sounds/piano-88-notes/4-g.wav',
+  'A4': 'servers/sounds/piano-88-notes/4-a.wav',
+  'B4': 'servers/sounds/piano-88-notes/4-b.wav',
+  'C5': 'servers/sounds/piano-88-notes/5-c.wav',
+  'D5': 'servers/sounds/piano-88-notes/5-d.wav',
+
 };
 
 port.on('open', (err) => {

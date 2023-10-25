@@ -123,6 +123,27 @@
   color: #333; /* Dark gray placeholder text */
 }
 
+/* HalloweenReceipt.css */
+.halloween-container {
+  background: url('https://cdn.pic.in.th/file/picinth/-random---.jpeg') repeat; /* Use a paper texture image */
+  color: #ff6600; /* Orange text color */
+  text-align: center;
+  font-family: 'Bangers', sans-serif; /* Spooky font */
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.halloween-header {
+  font-size: 3rem;
+  text-shadow: 2px 2px 3px black; /* Add a shadow to text */
+  background-color: transparent; /* Make the background transparent */
+  color: #ff6600; /* Orange text color */
+}
+
 
 @keyframes App-logo-spin {
   from {

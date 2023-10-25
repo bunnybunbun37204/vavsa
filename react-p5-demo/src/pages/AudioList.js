@@ -20,7 +20,7 @@ function AudioList() {
 
   const handleAudioClick = (filename) => {
     // Navigate to the audio detail page using React Router
-    navigate(`/audioname/${filename}`);
+    navigate(`/audiodetail/${filename}`);
   };
 
   return (

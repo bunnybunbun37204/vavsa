@@ -1,6 +1,7 @@
 import React from "react";
 import io from 'socket.io-client';
 import QRCode from 'qrcode.react';
+import Mic from "../components/TestMicsound";
 
 class InputMelody extends React.Component {
   constructor(props) {
@@ -115,7 +116,7 @@ class InputMelody extends React.Component {
     return (
       <div className="halloween-input-melody">
         <h1 className="halloween-header">Hello, Spooky Halloween!</h1>
-
+        <Mic/>
         <input
           type="text"
           placeholder="Type the song name"
