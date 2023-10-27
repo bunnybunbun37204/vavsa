@@ -3,15 +3,10 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const cors = require('cors');
 const app = express();
-const port = 4000;
-
-const corsOptions = {
-    origin: ['http://localhost:3000', 'http://localhost:5000'],
-  };
 
 
 // Set up MongoDB connection
-mongoose.connect('mongodb+srv://bunyawat:Asd_0949823192@cluster0.nqv9e.mongodb.net/', {
+mongoose.connect(process.env.URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -27,10 +22,21 @@ const Audio = mongoose.model('Audio', audioSchema);
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.use(cors(corsOptions));
+// Middleware to add custom headers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS, PATCH, DELETE, POST, PUT');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  next();
+});
 
 // Serve uploaded audio files
 app.use('/uploads', express.static('uploads'));
+
+app.get('/', (req, res) =>  {
+  res.send("RUNNING API V2");
+});
 
 // Route for uploading audio files
 app.post('/upload', upload.single('audio'), async (req, res) => {
@@ -111,6 +117,8 @@ app.get('/audio/:audioId', async (req, res) => {
     }
   });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(4000, () => {
+  console.log(`Server is running on port 4000`);
 });
+
+module.exports = app;

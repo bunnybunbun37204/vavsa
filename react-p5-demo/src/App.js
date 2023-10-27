@@ -48,15 +48,8 @@ function App() {
       // Access the filename route parameter using useParams
       const { songId } = useParams();
       console.log("Song id is", songId);
-      let a = getRandomInt(2);
-      // if (a === 1) {
-      //   return <BallSketch songId={songId} />;
-      // }
-      // else {
-      //   return <RingSketch songId={songId} />;
-      // }
+      return <RingSketch songId={songId}/>
       // Pass the filename as a prop to AudioDetail component
-      return <WaterSketch songId={songId}/>
     }
 
   return (

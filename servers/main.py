@@ -6,7 +6,7 @@ import numpy as np
 import requests
 
 app = Flask(__name__)
-api_url = "http://localhost:4000/upload"
+api_url = "https://api-ex4.vercel.app/upload"
 CORS(app, resources={r"/receive_data": {"origins": "http://localhost:3000"}})
 
 # This dictionary will be used to store data

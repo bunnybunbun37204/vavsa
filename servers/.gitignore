@@ -1,0 +1,4 @@
+.wav
+# Local Netlify folder
+.netlify
+.env

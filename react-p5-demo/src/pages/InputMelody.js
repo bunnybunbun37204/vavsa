@@ -22,7 +22,7 @@ function InputMelody() {
   }
 
   const checkSongExistence = () => {
-    fetch(`http://localhost:4000/audio`)
+    fetch(`https://api-ex4.vercel.app/audio`)
       .then((response) => response.json())
       .then((data) => {
         const songExists = data.some((audio) => audio.filename === songName);
@@ -69,7 +69,7 @@ function InputMelody() {
           console.log(data);
         }).catch((err) => console.log("error : " + err));
       let audiofile = songName + ".wav";
-      setQrCodeData(`http://localhost:4000/audioname/${audiofile}`);
+      setQrCodeData(`https://vavsa-test.vercel.app/audiodetail/${audiofile}`);
     }, 10000);
   }
 

@@ -9,7 +9,7 @@ function AudioList() {
   useEffect(() => {
     // Fetch data from the /audio API endpoint
     axios
-      .get('http://localhost:4000/audio')
+      .get('https://api-ex4.vercel.app/audio')
       .then((response) => {
         setAudioData(response.data);
       })

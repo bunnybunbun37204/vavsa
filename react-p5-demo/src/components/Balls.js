@@ -202,7 +202,7 @@ function BallSketch({ songId }) {
     };
 
     p.preload = () => {
-      song = p.loadSound(`http://localhost:4000/audioname/${songId}`);
+      song = p.loadSound(`https://api-ex4.vercel.app/audioname/${songId}`);
     };
 
     p.setup = () => {
