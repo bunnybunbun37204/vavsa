@@ -1,13 +1,12 @@
 // Import necessary dependencies
 import React from 'react';
-import { useRoutes, Outlet, useParams } from 'react-router-dom'; // Import useParams
+import { useRoutes, Outlet, useParams, Link } from 'react-router-dom'; // Import useParams
 import AudioList from './pages/AudioList';
 import AudioDetail from './pages/AudioDetail';
 import InputMelody from './pages/InputMelody';
 import './App.css';
-import RingSketch from './components/Rings';
-import BallSketch from './components/Balls';
-import WaterSketch from './components/WaterSketch';
+import RingSketch from './components/animations/Rings';
+import FrequencyGraph from './components/charts';
 
 function App() {
   const element = useRoutes([
@@ -27,6 +26,10 @@ function App() {
       path: 'audio/:songId',
       element: <AnimateView />,
     },
+    {
+      path: '/test',
+      element: <FrequencyGraph/>
+    }
   ]);
 
   // Create a separate AudioDetailView component
@@ -39,9 +42,6 @@ function App() {
     return <AudioDetail songId={songId} />;
   }
 
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
 
     // Create a separate AudioDetailView component
   function AnimateView() {
@@ -52,16 +52,23 @@ function App() {
       // Pass the filename as a prop to AudioDetail component
     }
 
-  return (
-    <div>
-      {/* Navbar */}
-      <nav className="navbar">
-        <h1 className="navbar-header">VAVSA</h1>
-      </nav>
+    return (
+      <div>
+        {/* Navbar */}
+        <nav className="navbar">
+        <Link to="/" className="navbar-link">
+          <h1 className="navbar-header">V A V S A </h1>
+        </Link>
+          {/* You can add navigation links here if needed */}
+        </nav>
+        
+        {/* Render the element based on the route */}
         {element}
+        
+        {/* Render the nested routes */}
         <Outlet />
-    </div>
-  );
+      </div>
+    )
 }
 
 export default App;

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import io from 'socket.io-client';
 import QRCode from 'qrcode.react';
-import Mic from "../components/TestMicsound";
 import { useNavigate } from "react-router-dom";
 
 function InputMelody() {
@@ -58,17 +57,19 @@ function InputMelody() {
       console.log("Stop fetching: " + datas + " "+songName);
       setMessage("View QR Code");
       setShowPopup(true);
-      fetch('http://localhost:5000/receive_data', {
+      fetch('https://api-ex4.vercel.app/get_notes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ songname: songName, datas: datas }),
-      }).then((response) => response.json())
+        body: JSON.stringify({ songname: songName, notes: datas }),
+      }).then((response) => {
+        response.json();
+      })
         .then((data) => {
-          console.log(data);
+          console.log("Finish data");
         }).catch((err) => console.log("error : " + err));
-      let audiofile = songName + ".wav";
+      let audiofile = songName;
       setQrCodeData(`https://vavsa-test.vercel.app/audiodetail/${audiofile}`);
     }, 10000);
   }
@@ -79,8 +80,7 @@ function InputMelody() {
 
   return (
     <div className="halloween-input-melody">
-      <h1 className="halloween-header">Hello, Spooky Halloween!</h1>
-      <Mic />
+      <h1 className="halloween-header">EXHIBOO 4</h1>
       <input
         type="text"
         placeholder="Type the song name"
@@ -104,7 +104,7 @@ function InputMelody() {
             <button onClick={closePopup} className="halloween-button ">
               Close
             </button>
-            <QRCode value={qrCodeData} />
+            <QRCode value={qrCodeData}  />
           </div>
         </div>
       )}

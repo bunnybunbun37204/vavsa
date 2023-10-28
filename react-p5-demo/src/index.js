@@ -12,4 +12,4 @@ rootContainer.render(
   </BrowserRouter>
 );
 
-module.exports = root;
+export { root }

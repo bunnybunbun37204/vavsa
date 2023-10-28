@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
-const cors = require('cors');
 const app = express();
+require('dotenv').config();
 
 
 // Set up MongoDB connection
@@ -16,7 +16,15 @@ const audioSchema = new mongoose.Schema({
   data: Buffer,
 });
 
+// Create a Mongoose model for notes
+const noteSchema = new mongoose.Schema({
+  songname: String,
+  content: [String],
+});
+
 const Audio = mongoose.model('Audio', audioSchema);
+const Note = mongoose.model('Note', noteSchema);
+
 
 // Configure Multer for handling file uploads
 const storage = multer.memoryStorage();
@@ -24,6 +32,7 @@ const upload = multer({ storage: storage });
 
 // Middleware to add custom headers
 app.use((req, res, next) => {
+  res.setHeader('Content-Type','application/json');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS, PATCH, DELETE, POST, PUT');
@@ -33,6 +42,7 @@ app.use((req, res, next) => {
 
 // Serve uploaded audio files
 app.use('/uploads', express.static('uploads'));
+app.use(express.json()); 
 
 app.get('/', (req, res) =>  {
   res.send("RUNNING API V2");
@@ -55,6 +65,25 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('Error uploading and saving the audio file');
+  }
+});
+
+app.post('/get_notes', async (req, res) => {
+  try {
+    const { notes } = req.body; // Extract the 'notes' property from the request body
+
+    if (!notes || !Array.isArray(notes)) {
+      return res.status(400).send('Invalid input. Expecting an object with a "notes" property that contains an array of strings.');
+    }
+
+    // Save each note in the array to MongoDB
+    const newNote = new Note({songname : req.body.songname ,content: notes });
+    await newNote.save();
+
+    res.status(200).send('Notes saved successfully'); // Respond with a success message
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error saving notes');
   }
 });
 
@@ -98,12 +127,55 @@ app.get('/audio/:audioId', async (req, res) => {
       res.status(500).send('Error retrieving and serving audio data');
     }
   });
+
+  app.get('/get_notes/:noteId', async (req, res) => {
+    try {
+      const noteId = req.params.noteId;
   
+      // Find the note in the database by its ID
+      const note = await Note.findById(noteId);
+  
+      if (!note) {
+        return res.status(404).send('Note not found');
+      }
+  
+      // Send the note as a JSON response
+      res.status(200).json(note.content);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error retrieving note');
+    }
+  });
+  
+  app.get('/getNotesByName/:songname', async (req, res) => {
+    try {
+      const requestSongname = req.params.songname;
+      console.log(requestSongname);
+      const notes = await Note.findOne({ songname: requestSongname });
+      console.log(notes);
+
+      if (!notes) {
+        return res.status(404).send('Note not found');
+      }
+
+      let data = {
+        id : notes._id,
+        songname : notes.songname,
+        data : notes.content
+      };
+  
+      // Send the note as a JSON response
+      res.status(200).json(data);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error retrieving note');
+    }
+  });
 
   app.get('/audio', async (req, res) => {
     try {
       // Find all audio files in the database
-      const audioFiles = await Audio.find({}, 'filename'); // You can select only the filename if you don't want to send the entire data
+      const audioFiles = await Note.find({}, 'songname'); // You can select only the filename if you don't want to send the entire data
   
       if (audioFiles.length === 0) {
         return res.status(404).send('No audio files found');

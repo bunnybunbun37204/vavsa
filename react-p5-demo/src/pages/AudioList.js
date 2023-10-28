@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, Routes, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function AudioList() {
   const [audioData, setAudioData] = useState([]);
@@ -25,15 +25,15 @@ function AudioList() {
 
   return (
     <div className="audio-list-container">
-      <h1 className="audio-list-header">Spooky Audio Files</h1>
+      <h1 className="audio-list-header">Spooky Songs</h1>
       <ul>
         {audioData.map((audio, index) => (
           <li
             key={index}
-            onClick={() => handleAudioClick(audio.filename)}
+            onClick={() => handleAudioClick(audio.songname)}
             className="audio-item"
           >
-            {audio.filename}
+            {audio.songname}
           </li>
         ))}
       </ul>
