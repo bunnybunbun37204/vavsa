@@ -79,7 +79,7 @@ const AudioDetail = ({ songId }) => {
       </div>
       <hr />
       <button style={{ fontFamily: 'Nosifer' }} onClick={() => handleClick(songId)} className="halloween-button">
-        Let's play the song!
+        Play!
       </button>
     </div>
   );

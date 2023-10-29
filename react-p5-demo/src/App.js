@@ -55,7 +55,9 @@ function App() {
     return (
       <div>
         {/* Navbar */}
+        
         <nav className="navbar">
+
         <Link to="/" className="navbar-link">
           <h1 className="navbar-header">V A V S A </h1>
         </Link>

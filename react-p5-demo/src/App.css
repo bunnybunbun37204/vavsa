@@ -36,13 +36,15 @@
   color: #ff6600; /* Orange text color */
   text-align: center;
   font-family: 'Bangers', sans-serif; /* Spooky font */
-  padding: 20px;
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove any default margin */
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 
 
 /* AudioList.css */
